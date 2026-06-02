@@ -1,0 +1,55 @@
+package org.plumelib.util;
+
+import java.util.concurrent.atomic.AtomicInteger;
+import org.checkerframework.checker.lock.qual.GuardSatisfied;
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+/**
+ * This is a deterministic version of the {@link Object} class. To remove one source of
+ * nondeterminism from your program, do not instantiate the Object class, as in {@code new
+ * Object()}; instead do {@code new DeterministicObject()}.
+ *
+ * <p>This class differs from Object in that it overrides {@link #hashCode()}. Any use of {@code
+ * Object.hashCode()} is nondeterministic because the return value of {@code Object.hashCode()}
+ * depends on when the garbage collector runs. That nondeterminism can affect the iteration order of
+ * HashMaps and HashSets, the output of {@code toString()}, and other behavior.
+ *
+ * <p>To implement similar functionality for other classes, see {@link UniqueId}.
+ *
+ * @see UniqueId
+ */
+public class DeterministicObject {
+
+  /** The number of objects created so far. */
+  static final AtomicInteger counter = new AtomicInteger(0);
+
+  /** The unique ID for this object. */
+  final int uid = counter.getAndIncrement();
+
+  /** Create a DeterministicObject. */
+  public DeterministicObject() {}
+
+  /**
+   * {@inheritDoc}
+   *
+   * <p>Returns a unique ID for the object. The first object created has the id (and hash code) 0,
+   * the second one has 1, and so forth.
+   */
+  @Override
+  public int hashCode(@GuardSatisfied DeterministicObject this) {
+    return uid;
+  }
+
+  /**
+   * Returns true if this object is the same instance as the given object. Two distinct {@code
+   * DeterministicObject} objects are never equal.
+   *
+   * @param other a value to compare to this
+   * @return true if this is the same as the given object
+   */
+  @Override
+  public boolean equals(
+      @GuardSatisfied DeterministicObject this, @Nullable @GuardSatisfied Object other) {
+    return this == other;
+  }
+}

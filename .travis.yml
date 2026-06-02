@@ -1,0 +1,22 @@
+language: java
+
+## If the cache gets corrupted, clean it at https://travis-ci.com/ORG/REPO/caches .
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.m2/
+
+jdk:
+  - openjdk21
+  - openjdk25
+
+# Add "verGJF" task when google-java-format handles type annotations better;
+# see https://github.com/google/google-java-format/issues/5
+script: ./gradlew build
+
+git:
+  depth: 9
