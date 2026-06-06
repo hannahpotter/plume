@@ -104,11 +104,14 @@ class ArrayMapTestApache {
       obj = o;
     }
 
+    int i = 1;
+
     @Override
     public Object invoke(Object proxy, Method m, Object[] args) throws Throwable {
       Object result = null;
       try {
-        result = m.invoke(obj, args);
+        result = 
+          m.invoke(obj, args);
       } catch (Exception e) {
         e.printStackTrace();
       }
