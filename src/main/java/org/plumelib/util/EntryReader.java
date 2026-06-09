@@ -135,7 +135,7 @@ public class EntryReader extends LineNumberReader implements Iterable<String>, I
   /** Platform-specific line separator. */
   private static final String lineSep = System.lineSeparator();
 
-  /** True if currently inside a multiline comment <!-- ... --> .*/
+  /** True if currently inside a multiline comment .*/
   private boolean inMultilineComment = false;
 
   /** True if currently inside a fenced code block (``` ... ```). */
