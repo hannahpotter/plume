@@ -25,6 +25,7 @@ final class MapsPTest {
     tensNumberConversion.put(7, "seventy");
     tensNumberConversion.put(8, "eighty");
     tensNumberConversion.put(9, "ninety");
+    System.out.println("Pretend change");
   }
 
   private static Map<String, Integer> giftsToQuantity1 = new TreeMap<>();
@@ -37,7 +38,6 @@ final class MapsPTest {
     giftsToQuantity1.put("turtle doves", 2);
     giftsToQuantity1.put("French hens", 3);
     giftsToQuantity3.put("calling birds", 4);
-    giftsToQuantity4.put("gold rings", 5);
     giftsToQuantity4.put("geese a-laying", 6);
     giftsToQuantity4.put("swans a-swimming", 7);
     giftsToQuantity4.put("maids a-milking", 8);

@@ -5,5 +5,4 @@ final class MultiRandSelectorTest {
 
   MultiRandSelectorTest() {}
 
-  // TODO
 }
